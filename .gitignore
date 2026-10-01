@@ -1,3 +1,13 @@
-# Fullbright
+# Gradle
+.gradle/
+build/
+out/
 
-This repository contains a simple, client-only Fullbright mod for NeoForge 1.21.1.
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

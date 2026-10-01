@@ -1,17 +1,15 @@
 # Fullbright
 
-A lightweight client-side NeoForge mod for Minecraft 1.21.1 that adds a Fullbright toggle keybind.
+A lightweight client-side mod for NeoForge 1.21.1 that adds a Fullbright toggle keybind.
 
 ## Features
+- Toggle Fullbright with the G key by default
+- Key appears in Minecraft Controls
+- Client-only; no server install required
+- Restores gamma exactly when toggled off
+- Small client-side notifications (`Fullbright: ON` / `Fullbright: OFF`)
 
-- Default keybind: G
-- Toggle Fullbright on/off without opening a GUI
-- Client-only rendering change; no server installation required
-- Restores the original gamma/brightness setting when disabled
-- Small client-side chat message notifications
-- Keybind appears in Minecraft Controls
-
-## Build
+## Build locally
 
 From the project root:
 
@@ -19,15 +17,15 @@ From the project root:
 gradle build
 ```
 
-If you have the Gradle wrapper set up later, you can use:
+If you use the Gradle wrapper after generating it locally, use:
 
 ```bash
 ./gradlew build
 ```
 
-## Resulting jar
+## Output jar
 
-The built mod jar is placed in:
+The generated jar is normally placed in:
 
 ```text
 build/libs/fullbright-1.0.0.jar
@@ -35,18 +33,13 @@ build/libs/fullbright-1.0.0.jar
 
 ## Install
 
-1. Build the mod with Gradle.
-2. Copy the generated jar from `build/libs/` into your NeoForge 1.21.1 client `mods` folder.
-3. Start the NeoForge 1.21.1 client and press G to toggle Fullbright.
-4. You can rebind the key in `Options -> Controls`.
+1. Place the built jar in your NeoForge 1.21.1 client `mods` folder.
+2. Launch the game.
+3. Press G to toggle Fullbright.
+4. Rebind the key in `Options -> Controls` if desired.
 
-## Implementation notes
+## Version notes
 
-This mod is intentionally client-side only. It does not alter world data or block lighting. Instead, it temporarily adjusts the local client's gamma value while the player is in a world and restores the original value when turned off.
-
-## Version compatibility notes
-
-- This project targets NeoForge 1.21.1 specifically.
-- The API usage is kept intentionally simple so that nearby versions may need only minimal edits.
-- If a future version changes the `gamma()` or key registration APIs, the likely changes are limited to the exact event registration and the brightness option accessors.
-- The mod is not claimed to work on other Minecraft versions unless explicitly verified.
+- Targeting NeoForge 1.21.1 only.
+- The implementation uses the standard client gamma option, which is the simplest reliable client-side brightness change.
+- Nearby versions may need small API adjustments, especially around key registration and the exact gamma option accessors.

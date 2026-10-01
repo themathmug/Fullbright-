@@ -1,5 +1,6 @@
 package com.themathmug.fullbright;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -12,9 +13,10 @@ import org.lwjgl.glfw.GLFW;
 @Mod.EventBusSubscriber(modid = Fullbright.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class Keybinds {
     public static final KeyMapping TOGGLE_FULLBRIGHT = new KeyMapping(
-        "key.fullbright.toggle",
-        GLFW.GLFW_KEY_G,
-        "key.categories.fullbright"
+            "key.fullbright.toggle",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_G,
+            "key.categories.misc"
     );
 
     private Keybinds() {
@@ -27,15 +29,15 @@ public final class Keybinds {
 }
 
 @Mod.EventBusSubscriber(modid = Fullbright.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
-class ClientInputHandler {
+final class ClientInputHandler {
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END) {
             return;
         }
 
-        Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.player == null) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player == null) {
             Fullbright.reset();
             return;
         }
